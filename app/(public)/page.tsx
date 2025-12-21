@@ -16,7 +16,7 @@ export default function App() {
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0" />
         <div className="mt-[80px] sm:mt-24 md:mt-28 w-full max-w-content relative z-10">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-[56px] lg:text-[64px] xl:text-[72px] tracking-tighter lg:tracking-[-0.3rem] font-semibold !mt-10 leading-tight sm:leading-[64px] md:leading-[72px] lg:leading-[88px] xl:leading-[96px]">
+            <h1 className="text-[40px] sm:text-5xl md:text-[56px] lg:text-[64px] xl:text-[72px] tracking-tighter lg:tracking-[-0.3rem] font-semibold !mt-10 leading-tight sm:leading-[64px] md:leading-[72px] lg:leading-[88px] xl:leading-[96px]">
               Launch your{" "}
               <Link
                 href="/auth/signup"
@@ -26,15 +26,8 @@ export default function App() {
               </Link>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-xl px-4 sm:px-0 mt-6 sm:mt-8">
-              Itemstores provides everything you need to rapidly launch{" "}
-              <Link
-                href="/examples"
-                className="hover:opacity-80 inline-block border-b-2 border-b-gray-700"
-              >
-                <Globe className="inline size-4 sm:size-5 mb-0.5" /> online
-                stores
-              </Link>{" "}
-              at the lowest cost in the industry.
+              Itemstores provides everything you need to rapidly launch online
+              stores at the lowest possible cost.
             </p>
             <div className="w-full py-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mt-3 sm:mt-6">
               <Button

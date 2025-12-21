@@ -1,6 +1,6 @@
 export default function BrowserMockup() {
   return (
-    <div className="relative w-full hover:scale-[101%] transition-all duration-500">
+    <div className="relative w-4/5 hover:scale-[101%] transition-all duration-500">
       <div className="bg-gray-100 rounded-lg border border-gray-300">
         <div className="flex items-center px-2 sm:px-4 py-1.5 sm:py-2 bg-gray-100 rounded-t-lg">
           <div className="flex space-x-1.5 sm:space-x-2">
@@ -10,7 +10,7 @@ export default function BrowserMockup() {
           </div>
           <div className="flex-1 ml-2 sm:ml-4">
             <div className="bg-white rounded-md px-2 py-1 sm:py-1.5 text-xs sm:text-sm text-gray-700 font-mono text-left truncate">
-              item.store/stanfordsoccer2026
+              item.store/stfdsoccer
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@ export default function BrowserMockup() {
             <div className="sm:mt-1 text-sm sm:text-base md:text-lg leading-5 sm:leading-6 text-center sm:text-left">
               <p>we&apos;re still under construction</p>
               <p className="text-muted-foreground break-all sm:break-normal">
-                renmic [at] stanford [at] edu for inquiries
+                renmic [at] stanford [dot] edu for inquiries
               </p>
             </div>
           </div>

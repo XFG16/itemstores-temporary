@@ -44,11 +44,11 @@ export default function PublicLayout({
         }}
       >
         <div className="w-full bg-gradient-to-r from-blue-600 to-purple-600">
-          <Link href="/pricing" className="group block w-full">
+          <Link href="/pricing#reality-check" className="group block w-full">
             <div className="mx-auto max-w-content-large flex justify-center items-center text-xs sm:text-sm gap-0.5 px-4 sm:px-6 py-2.5 font-medium text-white group-hover:opacity-70 transition-opacity">
               <div className="flex items-center justify-center flex-wrap gap-x-1">
                 <span className="text-center whitespace-nowrap">
-                  Save up to 90% compared to other platforms
+                  Save 90% per year compared to other platforms
                 </span>
                 <ArrowRight className="inline-block size-3 sm:size-4 text-white flex-shrink-0" />
               </div>
@@ -62,7 +62,7 @@ export default function PublicLayout({
                 href="/"
                 className="hover:opacity-70 transition-opacity w-fit flex items-center gap-2.5"
               >
-                <p className="font-semibold text-2xl sm:text-3xl tracking-tighter">
+                <p className="font-semibold text-2xl sm:text-3xl tracking-tighter mr-4">
                   itemstores/
                 </p>
               </Link>
@@ -121,7 +121,7 @@ export default function PublicLayout({
                   </Button>
                 </>
               ) : (
-                <Link href="/auth/signup" className="text-sm sm:text-base underline mr-1">
+                <Link href="/auth/signup" className="text-sm sm:text-base underline mr-2">
                   Start for free
                 </Link>
               )}
@@ -136,8 +136,8 @@ export default function PublicLayout({
                     </span>
                   </SheetTrigger>
                   <SheetContent
-                    side="right"
-                    className="bg-white max-w-[600px] w-full flex flex-col"
+                    side="bottom"
+                    className="bg-white max-w-[600px] w-full h-full flex flex-col"
                   >
                     <nav className="flex flex-col gap-0 mt-8 flex-1">
                       <Link
@@ -203,7 +203,7 @@ export default function PublicLayout({
           </div>
         </div>
       </header>
-      <main className="pt-4 pb-24">{children}</main>
+      <main className="pt-4 pb-24 w-full">{children}</main>
     </div>
   );
 }

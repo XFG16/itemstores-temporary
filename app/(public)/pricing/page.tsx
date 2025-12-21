@@ -8,14 +8,17 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Slider } from "@/components/ui/slider";
 import { useIsMobile } from "@/hooks/useMobile";
 import { ArrowDown, ArrowLeftRight, Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { FaUsps } from "react-icons/fa";
 
 export default function PricingPage() {
   const isMobile = useIsMobile(640);
+  const [monthlyLabels, setMonthlyLabels] = useState(50);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -33,14 +36,31 @@ export default function PricingPage() {
     }
   }, []);
 
+  // Calculate savings based on average shipping label cost of $8
+  const avgLabelCost = 8;
+  const discount = 0.5; // 50% off
+  const regularCost = monthlyLabels * avgLabelCost;
+  const discountedCost = regularCost * (1 - discount);
+  const monthlySavings = regularCost - discountedCost;
+  const yearlySavings = monthlySavings * 12;
+  const monthsToPayoff =
+    monthlySavings > 0 ? Math.ceil(499 / monthlySavings) : 0;
+
   // Competitor data for the overcharge section
   const competitors = [
     {
       name: "OrderMyGear",
       logo: "/static/images/logos/ordermygear.png",
-      width: 100,
-      height: 50,
+      width: 80,
+      height: 45,
       cost: ["$1,899 upfront", "$49/store/mo", "6.85% + $0.30 fee"],
+    },
+    {
+      name: "Deconetwork",
+      logo: "/static/images/logos/deconetwork.png",
+      width: 130,
+      height: 65,
+      cost: ["$499 upfront", "$3,588/year", "Hidden fees"],
     },
     {
       name: "Chipply",
@@ -54,7 +74,7 @@ export default function PricingPage() {
       logo: "/static/images/logos/inksoft.png",
       width: 120,
       height: 60,
-      cost: ["$3,768/year", "High hidden fees"],
+      cost: ["$3,768/year", "Hidden fees"],
     },
     {
       name: "Shopify",
@@ -62,13 +82,6 @@ export default function PricingPage() {
       width: 120,
       height: 60,
       cost: ["$3,588/year", "No custom links"],
-    },
-    {
-      name: "Deconetwork",
-      logo: "/static/images/logos/deconetwork.png",
-      width: 120,
-      height: 60,
-      cost: ["$499 upfront", "$3,588/year", "High hidden fees"],
     },
   ];
 
@@ -78,15 +91,15 @@ export default function PricingPage() {
         {/* <h2 className="text-2xl font-medium tracking-tight text-gray-500 line-through">
           Annoying monthly subscriptions
         </h2> */}
-        <h1 className="mx-4 text-4xl sm:text-5xl md:text-[56px] lg:text-[64px] font-semibold tracking-tighter lg:tracking-[-0.3rem] leading-[36px] md:leading-[56px] lg:leading-[64px] text-center">
+        <h1 className="sm:mx-4 text-[40px] sm:text-5xl md:text-[56px] lg:text-[64px] font-semibold tracking-tighter lg:tracking-[-0.3rem] leading-[40px] md:leading-[56px] lg:leading-[64px] text-center">
           Beautiful online stores for free.
           {/* {" "}
           <span className="bg-gradient-to-br from-emerald-400 via-sky-500 to-indigo-500 bg-clip-text text-transparent">
             free.
           </span> */}
         </h1>
-        <h2 className="mt-8 text-sm text-gray-500 mx-4 text-center">
-          Built on top of the industry&apos;s best technologies
+        <h2 className="mt-8 text-sm text-gray-500 sm:mx-4 text-center">
+          Built on top of your favorite services
         </h2>
         <div className="mt-8 flex items-center space-x-6 sm:space-x-9 [&>*]:h-fit [&>*]:pointer-events-none [&>*]:select-none">
           <Image
@@ -94,7 +107,7 @@ export default function PricingPage() {
             alt="AWS Logo"
             width={70}
             height={50}
-            className="opacity-[68%] w-12 sm:w-16 hidden sm:block"
+            className="opacity-[68%] w-12 sm:w-16"
             style={{ filter: "brightness(0)" }}
           />
           <Image
@@ -110,7 +123,7 @@ export default function PricingPage() {
             alt="USPS Logo"
             width={180}
             height={70}
-            className="mb-1 grayscale w-[160px] sm:w-40"
+            className="mb-1 grayscale w-[140px] sm:w-40"
           />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10 sm:mt-20 w-full">
@@ -172,7 +185,7 @@ export default function PricingPage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="size-4 text-blue-500" /> 4.9% + $0.30
-                  Itemstores platform fee
+                  platform fee
                 </li>
               </ul>
             </CardContent>
@@ -251,7 +264,7 @@ export default function PricingPage() {
                 <li className="flex items-start gap-2">
                   <Check className="size-4 text-blue-500 mt-1" />
                   <div className="space-y-1">
-                    <p>2.9% + $0.30 Itemstores platform fee</p>
+                    <p>2.9% + $0.30 platform fee</p>
                     <p className="text-sm text-blue-500">
                       Save 2% per transaction compared to starter license
                     </p>
@@ -274,21 +287,17 @@ export default function PricingPage() {
             Reality check <ArrowDown className="ml-0.5 inline-block size-4" />
           </p>
           <CardHeader className="pb-4">
-            <CardTitle className="font-semibold text-2xl tracking-tighter">
-              You&apos;re getting{" "}
+            <CardTitle className="font-semibold text-2xl tracking-tighter leading-tight">
+              Don&apos;t get{" "}
               <span className="bg-red-50 pr-2 pl-1.5 sm:ml-0.5 py-[3px] rounded-lg inline-block">
                 <span className="text-destructive">overcharged</span>
               </span>{" "}
-              for launching{" "}
-              {/* <span className="rotate-[-5deg] inline-block font-normal font-serif ml-1 mr-0.5 text-red-900">
-                💩 crappy
-              </span>{" "} */}
-              online stores.
+              for launching online stores
             </CardTitle>
-            <p>
+            <p className="hidden sm:block">
               Itemstores outprices other platforms because we only focus on the
-              features that matter. Unlike our competitors, our platform has no
-              fluff and no hidden fees.
+              features that matter. Unlike others, our platform has no fluff and
+              no hidden fees.
             </p>
           </CardHeader>
           <CardContent className="mt-2">
@@ -305,7 +314,7 @@ export default function PricingPage() {
                       alt={`${c.name} Logo`}
                       width={c.width}
                       height={c.height}
-                      className="sm:shrink-0 pointer-events-none select-none w-[72px] sm:w-auto"
+                      className="sm:shrink-0 pointer-events-none select-none w-20 sm:w-auto"
                     />
                     {/* <p className="text-xs font-medium text-muted-foreground leading-snug max-w-[150px]">
                       {c.name}
@@ -314,7 +323,10 @@ export default function PricingPage() {
                   <div className="z-10 flex items-center">
                     <div className="max-w-[300px] text-red-500 font-semibold tracking-tighter text-right space-y-0.5">
                       {c.cost.map((costItem, index) => (
-                        <div key={index} className="text-xl sm:text-2xl leading-tight">
+                        <div
+                          key={index}
+                          className="text-xl sm:text-2xl leading-tight"
+                        >
                           {costItem}
                         </div>
                       ))}
@@ -326,10 +338,86 @@ export default function PricingPage() {
           </CardContent>
         </Card>
 
+        <Card className="w-full mt-4 pb-2">
+          <CardHeader className="pb-0 flex-row justify-between">
+            <div className="space-y-1.5">
+              <CardTitle className="font-semibold text-2xl tracking-tighter flex items-start gap-2">
+                <FaUsps className="size-[30px] mt-[1px]"/> Ship and save with Itemstores
+              </CardTitle>{" "}
+              <p>
+                Purchase {monthlyLabels} shipping labels per month and the
+                full license pays for itself in{" "}
+                <span className="inline-block font-semibold tracking-tight bg-emerald-50 px-1.5 py-0.5 rounded text-emerald-600">
+                  {monthsToPayoff > 0 ? monthsToPayoff : "—"}{" "}
+                  {monthsToPayoff === 1 ? "month" : "months"}
+                </span>
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-10 mt-6">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="rounded-lg space-y-2">
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    Original cost per month
+                  </div>
+                  <div className="font-semibold text-4xl md:text-[40px] tracking-tighter py-2 text-gray-900">
+                    ${regularCost.toLocaleString()}
+                  </div>
+                </div>
+
+                <div className="rounded-lg space-y-2">
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    Itemstores discount
+                  </div>
+                  <div className="font-semibold text-4xl md:text-[40px] tracking-tighter py-2 text-emerald-800">
+                    -50%
+                  </div>
+                </div>
+
+                <div className="rounded-lg space-y-2">
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    Savings per month
+                  </div>
+                  <div className="font-semibold text-4xl md:text-[40px] tracking-tighter py-2 text-emerald-600">
+                    ${monthlySavings.toLocaleString()}
+                  </div>
+                </div>
+
+                <div className="rounded-lg space-y-2">
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    Savings per year
+                  </div>
+                  <div className="font-semibold text-4xl md:text-[40px] tracking-tighter py-2 text-emerald-600">
+                    ${yearlySavings.toLocaleString()}
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <Slider
+                  min={0}
+                  max={500}
+                  step={10}
+                  value={[monthlyLabels]}
+                  onValueChange={(value) => setMonthlyLabels(value[0])}
+                  className="w-full"
+                />
+                <div className="grid grid-cols-3 mt-2 text-sm text-muted-foreground">
+                  <p>0</p>
+                  <p className="text-gray-900 text-center">Labels</p>
+                  <p className="text-right">500+</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <Card className="w-full mt-4 border-2 border-purple-600">
           <CardHeader>
             <CardTitle className="font-semibold text-2xl tracking-tighter flex items-start gap-2">
-              <ArrowLeftRight className="mt-[3px]" /> Switching from another platform?
+              <ArrowLeftRight className="mt-[3px]" /> Switching from another
+              platform?
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -342,21 +430,26 @@ export default function PricingPage() {
                 we&apos;ll upgrade you to the full license for free.
               </p>
             </div>
-            <div className="flex items-center gap-3 sm:gap-5 mt-6 mb-2">
-              <h1 className="line-through text-3xl sm:text-[48px] text-gray-400 font-light">
+            <div className="flex items-center gap-4 sm:gap-5 mt-6 mb-2">
+              <h1 className="line-through text-4xl sm:text-[48px] text-gray-400 font-light">
                 $499
               </h1>
-              <Button size={isMobile ? "mdRounded" : "lgRounded"} variant={"outlineHeavy"} className="font-normal" asChild>
+              <Button
+                size={isMobile ? "mdRounded" : "lgRounded"}
+                variant={"outlineHeavy"}
+                className="font-normal"
+                asChild
+              >
                 <Link href="/contact">Contact us</Link>
               </Button>
             </div>
           </CardContent>
         </Card>
 
-        {/* <Card className="w-full mt-4 pb-4">
+        <Card className="w-full mt-4 pb-4">
           <CardHeader className="pb-0 flex-row justify-between">
             <div className="space-y-3">
-              <CardTitle className="font-semibold text-2xl tracking-tighter">
+              <CardTitle className="hidden sm:block font-semibold text-2xl tracking-tighter">
                 We proudly partner with
               </CardTitle>
               <Image
@@ -364,13 +457,16 @@ export default function PricingPage() {
                 alt="Stripe Logo"
                 width={100}
                 height={50}
+                className="w-24 sm:w-auto"
               />
             </div>
             <div className="flex flex-col items-end gap-1 mr-1.5">
               <h1 className="font-semibold text-2xl tracking-tighter leading-none">
                 2.9% + $0.30
               </h1>
-              <p className="mb-2.5 text-muted-foreground">Transaction fee</p>
+              <p className="mb-2.5 text-muted-foreground text-sm sm:text-base">
+                Card processing fee
+              </p>
             </div>
           </CardHeader>
           <CardContent>
@@ -401,13 +497,16 @@ export default function PricingPage() {
               </li>
             </ul>
           </CardContent>
-        </Card> */}
+        </Card>
 
         <div className="mt-16 sm:mt-20 w-full max-w-[600px] flex flex-col items-center">
           <h1 className="font-semibold text-4xl tracking-tighter text-center">
             Frequently asked questions
           </h1>
-          <Accordion type="multiple" className="w-full mt-12 px-6 sm:px-0 sm:mt-16">
+          <Accordion
+            type="multiple"
+            className="w-full mt-12 px-6 sm:px-0 sm:mt-16"
+          >
             <AccordionItem value="item-0">
               <AccordionTrigger className="text-md">
                 Are there any subscription fees?

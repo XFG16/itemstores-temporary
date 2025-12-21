@@ -7,7 +7,7 @@ export default function PublicNotFoundPage() {
         </h1>
         <div className="sm:mt-2 text-sm sm:text-base md:text-lg lg:text-3xl leading-5 sm:leading-6 lg:leading-normal text-center sm:text-left">
           <p>we&apos;re still under construction</p>
-          <p className="text-muted-foreground break-all sm:break-normal">renmic [at] stanford [at] edu for inquires</p>
+          <p className="text-muted-foreground break-all sm:break-normal">renmic [at] stanford [dot] edu for inquires</p>
         </div>
       </div>
     </main>

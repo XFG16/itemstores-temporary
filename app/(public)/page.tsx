@@ -56,6 +56,12 @@ export default function App() {
           <div className="relative mt-8 sm:mt-16 w-full flex justify-center">
             <Mockup />
           </div>
+          <div className="mt-32 text-lg lg:text-4xl leading-7 lg:leading-normal text-center sm:text-left">
+            <p>we&apos;re still under construction</p>
+            <p className="text-muted-foreground break-all sm:break-normal">
+              renmic [at] stanford [dot] edu for inquires
+            </p>
+          </div>
         </div>
       </div>
     </div>

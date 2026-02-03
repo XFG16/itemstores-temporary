@@ -3,9 +3,8 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import BrowserMockup from "./_components/browserMockup";
-import { Globe } from "lucide-react";
 import { useIsMobile } from "@/hooks/useMobile";
+import Mockup from "./_components/mockup";
 
 export default function App() {
   const mobile = useIsMobile(640);
@@ -20,7 +19,7 @@ export default function App() {
               Launch your{" "}
               <Link
                 href="/auth/signup"
-                className="gap-1 inline-flex items-center hover:opacity-90 transition-opacity ml-0.5 rounded-lg animate-slide-reveal bg-blue-600 text-white px-2 py-1.5 sm:px-3 sm:py-2 md:pl-3 md:pr-4 md:py-3 xl:pl-4 xl:pr-5 xl:py-4 leading-none"
+                className="gap-1 inline-flex items-center hover:opacity-90 transition-opacity ml-0.5 rounded-lg animate-slide-reveal bg-gradient-to-r from-blue-600 to-red-600 text-white px-2 py-1.5 sm:px-3 sm:py-2 md:pl-3 md:pr-4 md:py-3 xl:pl-4 xl:pr-5 xl:py-4 leading-none"
               >
                 item.store/today
               </Link>
@@ -55,7 +54,7 @@ export default function App() {
             </div>
           </div>
           <div className="relative mt-8 sm:mt-16 w-full flex justify-center">
-            <BrowserMockup />
+            <Mockup />
           </div>
         </div>
       </div>

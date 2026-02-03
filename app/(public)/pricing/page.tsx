@@ -9,8 +9,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/useMobile";
-import { ArrowDown, ArrowLeftRight, Check } from "lucide-react";
+import { ArrowDown, ArrowLeftRight, Check, Info } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -81,24 +87,24 @@ export default function PricingPage() {
       logo: "/static/images/logos/shopify.png",
       width: 120,
       height: 60,
-      cost: ["$3,588/year", "No custom links"],
+      cost: ["$3,588/year", "No custom links", "Add. fees"],
     },
   ];
 
   return (
-    <div className="mt-32 sm:mt-40 flex justify-center">
+    <div className="mt-32 sm:mt-44 flex justify-center">
       <div className="mx-4 sm:mx-8 md:mx-12 lg:mx-20 flex justify-center items-center flex-col w-full max-w-[945px] pb-20">
-        {/* <h2 className="text-2xl font-medium tracking-tight text-gray-500 line-through">
+        {/* <h2 className="text-2xl font-medium tracking-tight text-neutral-500 line-through">
           Annoying monthly subscriptions
         </h2> */}
-        <h1 className="sm:mx-4 text-[40px] sm:text-5xl md:text-[56px] lg:text-[64px] font-semibold tracking-tighter lg:tracking-[-0.3rem] leading-[40px] md:leading-[56px] lg:leading-[64px] text-center">
+        <h1 className="mx-4 text-[40px] sm:text-5xl md:text-[56px] lg:text-[64px] font-semibold tracking-tighter lg:tracking-[-0.3rem] leading-[40px] md:leading-[56px] lg:leading-[64px] text-center">
           Beautiful online stores for free.
           {/* {" "}
           <span className="bg-gradient-to-br from-emerald-400 via-sky-500 to-indigo-500 bg-clip-text text-transparent">
             free.
           </span> */}
         </h1>
-        <h2 className="mt-8 text-sm text-gray-500 sm:mx-4 text-center">
+        <h2 className="mt-8 text-sm text-neutral-500 sm:mx-4 text-center">
           Built on top of your favorite services
         </h2>
         <div className="mt-8 flex items-center space-x-6 sm:space-x-9 [&>*]:h-fit [&>*]:pointer-events-none [&>*]:select-none">
@@ -126,7 +132,7 @@ export default function PricingPage() {
             className="mb-1 grayscale w-[140px] sm:w-40"
           />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10 sm:mt-20 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10 sm:mt-24 w-full">
           <Card className="w-full pb-3">
             <CardHeader className="pb-0">
               <CardTitle className="font-semibold text-2xl tracking-tighter">
@@ -151,8 +157,7 @@ export default function PricingPage() {
               </Button>
               <ul className="mt-8 space-y-2">
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> 5 active stores at
-                  any time
+                  <Check className="size-4 text-blue-500" /> 5 stores per month
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="size-4 text-blue-500" /> 20 products per
@@ -161,9 +166,9 @@ export default function PricingPage() {
                 <li className="flex items-start gap-2">
                   <Check className="size-4 text-blue-500 mt-1" />
                   <div className="space-y-1">
-                    <p>Built-in USPS shipping labels</p>
-                    <p className="text-muted-foreground text-sm">
-                      Matches retail rates
+                    <p>Heavily discounted USPS shipping labels</p>
+                    <p className="text-sm text-blue-500">
+                      Up to 50% off retail rates
                     </p>
                   </div>
                 </li>
@@ -184,8 +189,7 @@ export default function PricingPage() {
                   handling
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> 4.9% + $0.30
-                  platform fee
+                  <Check className="size-4 text-blue-500" /> 5.9% platform fee
                 </li>
               </ul>
             </CardContent>
@@ -209,7 +213,7 @@ export default function PricingPage() {
                 <p className="mb-2.5 text-muted-foreground line-through">
                   $499
                 </p>
-                <p className="mb-2.5 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                <p className="mb-2.5 bg-gradient-to-br from-blue-500 to-red-500 bg-clip-text text-transparent">
                   (20% off)
                 </p>
               </div>
@@ -227,11 +231,11 @@ export default function PricingPage() {
               </Button>
               <ul className="mt-8 space-y-2">
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> Unlimited active
-                  stores at any time
+                  <Check className="size-4 text-blue-500" /> 100 stores per
+                  month
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> 100 products per
+                  <Check className="size-4 text-blue-500" /> 200 products per
                   store
                 </li>
                 <li className="flex items-start gap-2">
@@ -264,9 +268,9 @@ export default function PricingPage() {
                 <li className="flex items-start gap-2">
                   <Check className="size-4 text-blue-500 mt-1" />
                   <div className="space-y-1">
-                    <p>2.9% + $0.30 platform fee</p>
+                    <p>2.9% platform fee</p>
                     <p className="text-sm text-blue-500">
-                      Save 2% per transaction compared to starter license
+                      Save 3% per transaction compared to starter license
                     </p>
                   </div>
                 </li>
@@ -289,15 +293,13 @@ export default function PricingPage() {
           <CardHeader className="pb-4">
             <CardTitle className="font-semibold text-2xl tracking-tighter leading-tight">
               Don&apos;t get{" "}
-              <span className="bg-red-50 pr-2 pl-1.5 sm:ml-0.5 py-[3px] rounded-lg inline-block">
-                <span className="text-destructive">overcharged</span>
-              </span>{" "}
-              for launching online stores
+              <span className="text-destructive">overcharged</span> for
+              launching online stores
             </CardTitle>
             <p className="hidden sm:block">
               Itemstores outprices other platforms because we only focus on the
-              features that matter. Unlike others, our platform has no fluff and
-              no hidden fees.
+              features that matter. Unlike other software, our platform has no
+              fluff and no hidden fees.
             </p>
           </CardHeader>
           <CardContent className="mt-2">
@@ -327,7 +329,52 @@ export default function PricingPage() {
                           key={index}
                           className="text-xl sm:text-2xl leading-tight"
                         >
-                          {costItem}
+                          <span className="inline-flex w-full items-center justify-end gap-2">
+                            <span>{costItem}</span>
+                            {costItem === "Hidden fees" && (
+                              <TooltipProvider delayDuration={150}>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <button
+                                      type="button"
+                                      className="text-red-500/80 hover:text-red-600 mt-[1px]"
+                                      aria-label="Hidden fees details"
+                                    >
+                                      <Info
+                                        className="size-4 lg:size-5"
+                                        strokeWidth={2.5}
+                                      />
+                                    </button>
+                                  </TooltipTrigger>
+                                  <TooltipContent className="max-w-[240px]">
+                                    Platform/card processing fees not mentioned
+                                    on website
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            )}
+                            {costItem === "Add. fees" && (
+                              <TooltipProvider delayDuration={150}>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <button
+                                      type="button"
+                                      className="text-red-500/80 hover:text-red-600 mt-[1px]"
+                                      aria-label="Additional fees details"
+                                    >
+                                      <Info
+                                        className="size-4 lg:size-5"
+                                        strokeWidth={2.5}
+                                      />
+                                    </button>
+                                  </TooltipTrigger>
+                                  <TooltipContent className="max-w-[240px]">
+                                    Extra platform/card processing fees
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            )}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -342,11 +389,11 @@ export default function PricingPage() {
           <CardHeader className="pb-0 flex-row justify-between">
             <div className="space-y-1.5">
               <CardTitle className="font-semibold text-2xl tracking-tighter flex items-start gap-2">
-                <FaUsps className="size-[30px] mt-[1px]"/> Ship and save with Itemstores
+                <FaUsps className="size-[30px] mt-[1px]" /> Ship and save
               </CardTitle>{" "}
               <p>
-                Purchase {monthlyLabels} shipping labels per month and the
-                full license pays for itself in{" "}
+                Purchase {monthlyLabels} shipping labels per month and the full
+                license pays for itself in{" "}
                 <span className="inline-block font-semibold tracking-tight bg-emerald-50 px-1.5 py-0.5 rounded text-emerald-600">
                   {monthsToPayoff > 0 ? monthsToPayoff : "—"}{" "}
                   {monthsToPayoff === 1 ? "month" : "months"}
@@ -360,8 +407,24 @@ export default function PricingPage() {
                 <div className="rounded-lg space-y-2">
                   <div className="text-xs sm:text-sm text-muted-foreground">
                     Original cost per month
+                    <TooltipProvider delayDuration={150}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button
+                            type="button"
+                            className="text-muted-foreground/80 hover:text-muted-foreground inline-block ml-1 translate-y-[2px]"
+                            aria-label="Original cost per month assumption"
+                          >
+                            <Info className="size-3.5" />
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent className="max-w-[220px] text-xs">
+                          Assumes $8 per shipping label
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </div>
-                  <div className="font-semibold text-4xl md:text-[40px] tracking-tighter py-2 text-gray-900">
+                  <div className="font-semibold text-4xl md:text-[40px] tracking-tighter py-2 text-neutral-900">
                     ${regularCost.toLocaleString()}
                   </div>
                 </div>
@@ -405,7 +468,7 @@ export default function PricingPage() {
                 />
                 <div className="grid grid-cols-3 mt-2 text-sm text-muted-foreground">
                   <p>0</p>
-                  <p className="text-gray-900 text-center">Labels</p>
+                  <p className="text-neutral-900 text-center">Labels</p>
                   <p className="text-right">500+</p>
                 </div>
               </div>
@@ -413,7 +476,7 @@ export default function PricingPage() {
           </CardContent>
         </Card>
 
-        <Card className="w-full mt-4 border-2 border-purple-600">
+        <Card className="w-full mt-4 border-2 border-red-600">
           <CardHeader>
             <CardTitle className="font-semibold text-2xl tracking-tighter flex items-start gap-2">
               <ArrowLeftRight className="mt-[3px]" /> Switching from another
@@ -421,7 +484,7 @@ export default function PricingPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="bg-purple-600 rounded-lg p-4 mb-3 pt-3.5 text-white">
+            <div className="bg-red-600 rounded-lg p-4 mb-3 pt-3.5 text-white">
               <h3 className="font-semibold text-xl sm:text-2xl tracking-tight mb-1">
                 Our free migration promise
               </h3>
@@ -431,7 +494,7 @@ export default function PricingPage() {
               </p>
             </div>
             <div className="flex items-center gap-4 sm:gap-5 mt-6 mb-2">
-              <h1 className="line-through text-4xl sm:text-[48px] text-gray-400 font-light">
+              <h1 className="line-through text-4xl sm:text-[48px] text-neutral-400 font-light">
                 $499
               </h1>
               <Button
@@ -511,7 +574,7 @@ export default function PricingPage() {
               <AccordionTrigger className="text-md">
                 Are there any subscription fees?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-500">
+              <AccordionContent className="text-neutral-500">
                 No. You pay once for the full license and get lifetime access to
                 all features.
               </AccordionContent>
@@ -520,7 +583,7 @@ export default function PricingPage() {
               <AccordionTrigger className="text-md">
                 How do I get paid?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-500">
+              <AccordionContent className="text-neutral-500">
                 Customer payments initially go to your Itemstores account. Once
                 orders are placed, payouts to your bank account follow
                 Stripe&apos;s standard schedule (usually 2-3 business days).
@@ -530,7 +593,7 @@ export default function PricingPage() {
               <AccordionTrigger className="text-md">
                 What payment methods are supported?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-500">
+              <AccordionContent className="text-neutral-500">
                 All major credit/debit cards are accepted at checkout.
               </AccordionContent>
             </AccordionItem>
@@ -538,7 +601,7 @@ export default function PricingPage() {
               <AccordionTrigger className="text-md">
                 Can I print packing slips?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-500">
+              <AccordionContent className="text-neutral-500">
                 Absolutely. You can generate packing slips and download order
                 reports for easy fulfillment.
               </AccordionContent>
@@ -547,7 +610,7 @@ export default function PricingPage() {
               <AccordionTrigger className="text-md">
                 Can I buy shipping labels?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-500">
+              <AccordionContent className="text-neutral-500">
                 Absolutely. You can buy and print (discounted) shipping labels
                 directly from Itemstores. We also offer calculated shipping
                 rates based on customer location and package weight.
@@ -557,7 +620,7 @@ export default function PricingPage() {
               <AccordionTrigger className="text-md">
                 How does calculated shipping work?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-500">
+              <AccordionContent className="text-neutral-500">
                 Calculated shipping uses real-time rates from major carriers
                 like USPS. Rates are based on package weight, dimensions, and
                 destination. We do the heavy lifting so you can focus on
@@ -568,7 +631,7 @@ export default function PricingPage() {
               <AccordionTrigger className="text-md">
                 Can I let the customer pick up their items in store?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-500">
+              <AccordionContent className="text-neutral-500">
                 Absolutely. You can enable free shipping and give them
                 instructions for in-store pickup at checkout.
               </AccordionContent>
@@ -577,7 +640,7 @@ export default function PricingPage() {
               <AccordionTrigger className="text-md">
                 Are payments and payouts secure?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-500">
+              <AccordionContent className="text-neutral-500">
                 Absolutely. We partner with Stripe to handle payments. Stripe is
                 certified as PCI Service Provider Level 1. This is the most
                 stringent level of certification available in the industry.
@@ -587,7 +650,7 @@ export default function PricingPage() {
               <AccordionTrigger className="text-md">
                 Can I refund a customer?
               </AccordionTrigger>
-              <AccordionContent className="text-gray-500">
+              <AccordionContent className="text-neutral-500">
                 Absolutely. You can issue refunds directly from Itemstores.
                 However, you will need to communicate with the customer on your
                 own (typically by email or phone).

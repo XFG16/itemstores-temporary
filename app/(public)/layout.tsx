@@ -37,7 +37,7 @@ export default function PublicLayout({
   return (
     <div className="w-full flex flex-col items-center overflow-x-hidden">
       <header
-        className="border-b-[1px] border-b-gray-300 fixed flex w-full flex-col bg-white z-50 transition-opacity duration-300 overflow-x-hidden"
+        className="backdrop-blur fixed flex w-full flex-col bg-white/80 z-50 transition-opacity duration-300 overflow-x-hidden"
         style={{
           opacity: headerOpacity,
           pointerEvents: headerOpacity ? "all" : "none",
@@ -63,7 +63,10 @@ export default function PublicLayout({
                 className="hover:opacity-70 transition-opacity w-fit flex items-center gap-2.5"
               >
                 <p className="font-semibold text-2xl sm:text-3xl tracking-tighter mr-4">
-                  itemstores/
+                  itemstores
+                  <span className="inline-block bg-clip-text text-transparent bg-gradient-to-bl from-blue-900 via-purple-600 to-red-400">
+                    /
+                  </span>
                 </p>
               </Link>
               {!isMobile && (
@@ -121,7 +124,10 @@ export default function PublicLayout({
                   </Button>
                 </>
               ) : (
-                <Link href="/auth/signup" className="text-sm sm:text-base underline mr-2">
+                <Link
+                  href="/auth/signup"
+                  className="text-sm sm:text-base underline mr-2"
+                >
                   Start for free
                 </Link>
               )}

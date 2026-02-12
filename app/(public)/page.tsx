@@ -24,9 +24,9 @@ export default function App() {
                 item.store/today
               </Link>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-xl px-4 sm:px-0 mt-6 sm:mt-8">
-              Itemstores provides everything you need to rapidly launch online
-              stores at the lowest possible cost.
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-2xl px-4 sm:px-0 mt-6 sm:mt-8">
+              Launch beautiful pop-up stores in minutes. Built for team dealers,
+              apparel decorators, and group sales.
             </p>
             <div className="w-full py-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mt-3 sm:mt-6">
               <Button

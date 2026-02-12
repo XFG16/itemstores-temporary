@@ -24,11 +24,11 @@ export default function Mockup() {
   useEffect(() => {
     const browserId = setInterval(() => {
       setBrowserA((v) => !v);
-    }, 5000);
+    }, 10000);
 
     const phoneId = setInterval(() => {
       setPhoneA((v) => !v);
-    }, 6500);
+    }, 8000);
 
     return () => {
       clearInterval(browserId);
@@ -44,7 +44,7 @@ export default function Mockup() {
     >
       <div className="flex items-center justify-center gap-6">
         {/* Browser frame */}
-        <div className="relative hidden sm:block sm:flex-1 max-w-[1200px] lg:mr-10">
+        <div className="relative hidden sm:block sm:flex-1 max-w-[1200px] xl:mr-10">
           <div className="bg-neutral-100 rounded-xl border border-neutral-300 overflow-hidden aspect-[16/9] flex flex-col">
             {/* Browser header */}
             <div className="flex items-center px-4 py-2 bg-neutral-100 flex-shrink-0">
@@ -87,7 +87,7 @@ export default function Mockup() {
                 aria-hidden={browserA ? true : undefined}
               >
                 <Image
-                  src="/static/images/demo3.png"
+                  src="/static/images/demo8.png"
                   alt="Demo image 3"
                   fill
                   sizes="(min-width: 768px) 1200px, 100vw"
@@ -109,7 +109,9 @@ export default function Mockup() {
             <div className="p-2 z-20">
               <div className="bg-neutral-200 bg-opacity-80 backdrop-blur-sm rounded-full px-2.5 py-1.5 flex items-center justify-between gap-2 shadow-sm">
                 <Camera className="size-4 text-neutral-700" />
-                <div className="text-sm text-neutral-700">item.store/your-website-here</div>
+                <div className="text-sm text-neutral-700">
+                  item.store/your-website-here
+                </div>
                 <ShareIcon className="size-4 text-neutral-700" />
               </div>
             </div>

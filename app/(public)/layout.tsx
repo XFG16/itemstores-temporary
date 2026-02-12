@@ -43,7 +43,7 @@ export default function PublicLayout({
           pointerEvents: headerOpacity ? "all" : "none",
         }}
       >
-        <div className="w-full bg-gradient-to-r from-blue-600 to-red-600">
+        <div className="w-full bg-gradient-to-r from-blue-800 via-purple-700 to-red-400">
           <Link href="/pricing#reality-check" className="group block w-full">
             <div className="mx-auto max-w-content-large flex justify-center items-center text-xs sm:text-sm gap-0.5 px-4 sm:px-6 py-2.5 font-medium text-white group-hover:opacity-70 transition-opacity">
               <div className="flex items-center justify-center flex-wrap gap-x-1">

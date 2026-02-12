@@ -29,14 +29,13 @@ export default function PricingPage() {
   useEffect(() => {
     const hash = window.location.hash;
 
-    if (hash === "#reality-check") {
-      const realityCheckSection = document.getElementById("reality-check");
-      if (realityCheckSection) {
+    if (hash === "#reality-check" || hash === "#free-migration") {
+      const sectionId = hash.substring(1);
+      const section = document.getElementById(sectionId);
+      if (section) {
         const yOffset = -200; // 200 pixels above the element
         const y =
-          realityCheckSection.getBoundingClientRect().top +
-          window.pageYOffset +
-          yOffset;
+          section.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
     }
@@ -44,7 +43,7 @@ export default function PricingPage() {
 
   // Calculate savings based on average shipping label cost of $8
   const avgLabelCost = 8;
-  const discount = 0.5; // 50% off
+  const discount = 0.88; // 88% off
   const regularCost = monthlyLabels * avgLabelCost;
   const discountedCost = regularCost * (1 - discount);
   const monthlySavings = regularCost - discountedCost;
@@ -92,8 +91,8 @@ export default function PricingPage() {
   ];
 
   return (
-    <div className="mt-32 sm:mt-44 flex justify-center">
-      <div className="mx-4 sm:mx-8 md:mx-12 lg:mx-20 flex justify-center items-center flex-col w-full max-w-[945px] pb-20">
+    <div className="mt-32 sm:mt-44 flex flex-col items-center">
+      <div className="mx-4 sm:mx-8 md:mx-12 lg:mx-20 flex justify-center items-center flex-col w-full max-w-[945px]">
         {/* <h2 className="text-2xl font-medium tracking-tight text-neutral-500 line-through">
           Annoying monthly subscriptions
         </h2> */}
@@ -104,32 +103,26 @@ export default function PricingPage() {
             free.
           </span> */}
         </h1>
-        <h2 className="mt-8 text-sm text-neutral-500 sm:mx-4 text-center">
-          Built on top of your favorite services
-        </h2>
-        <div className="mt-8 flex items-center space-x-6 sm:space-x-9 [&>*]:h-fit [&>*]:pointer-events-none [&>*]:select-none">
+        <div className="mt-8 flex items-center sm:mx-4 gap-3 text-sm sm:text-base">
+          <h2 className="text-neutral-500 text-center">
+            Engineered with love from
+          </h2>
           <Image
-            src="/static/images/logos/aws.png"
-            alt="AWS Logo"
-            width={70}
-            height={50}
-            className="opacity-[68%] w-12 sm:w-16"
-            style={{ filter: "brightness(0)" }}
+            src="/static/images/logos/stanford.png"
+            alt="Stanford University"
+            width={95}
+            height={20}
+            className="grayscale w-[95px] opacity-80 mt-px"
           />
+          <h2 className="hidden sm:block text-neutral-500 text-center -ml-px">
+            and{" "}
+          </h2>
           <Image
-            src="/static/images/logos/stripe.png"
-            alt="Stripe Logo"
-            width={90}
-            height={50}
-            className="opacity-[68%] w-14 sm:w-20"
-            style={{ filter: "brightness(0)" }}
-          />
-          <Image
-            src="/static/images/logos/usps.svg"
-            alt="USPS Logo"
-            width={180}
-            height={70}
-            className="mb-1 grayscale w-[140px] sm:w-40"
+            src="/static/images/logos/nyc.png"
+            alt="New York City"
+            width={85}
+            height={20}
+            className="hidden sm:block grayscale w-[85px] opacity-60"
           />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10 sm:mt-24 w-full">
@@ -157,46 +150,46 @@ export default function PricingPage() {
               </Button>
               <ul className="mt-8 space-y-2">
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> 5 stores per month
+                  <Check className="size-4 text-blue-600" /> 5 stores per month
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> 20 products per
+                  <Check className="size-4 text-blue-600" /> 20 products per
                   store
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="size-4 text-blue-500 mt-1" />
+                  <Check className="size-4 text-blue-600 mt-1" />
                   <div className="space-y-1">
                     <p>Heavily discounted USPS shipping labels</p>
-                    <p className="text-sm text-blue-500">
-                      Up to 50% off retail rates
+                    <p className="text-sm text-blue-600">
+                      Up to 88% off retail rates
                     </p>
                   </div>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> $0 website hosting
+                  <Check className="size-4 text-blue-600" /> $0 website hosting
                   fees
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> Online stores that
+                  <Check className="size-4 text-blue-600" /> Online stores that
                   actually look good
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> Automatic tax
+                  <Check className="size-4 text-blue-600" /> Automatic tax
                   collection
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> Refund and dispute
+                  <Check className="size-4 text-blue-600" /> Refund and dispute
                   handling
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> 5.9% platform fee
+                  <Check className="size-4 text-blue-600" /> 5.9% platform fee
                 </li>
               </ul>
             </CardContent>
           </Card>
-          <Card className="mt-6 lg:mt-0 w-full pb-3 border-2 border-blue-500 relative">
+          <Card className="mt-6 lg:mt-0 w-full pb-3 border-2 border-blue-600 relative">
             <div className="absolute -top-6 left-5">
-              <p className="bg-blue-500 text-white text-sm font-medium tracking-tight px-2 h-6 flex items-center rounded-t-lg shadow">
+              <p className="bg-blue-600 text-white text-sm font-medium tracking-tight px-2 h-6 flex items-center rounded-t-lg shadow">
                 One-time purchase
               </p>
             </div>
@@ -213,7 +206,7 @@ export default function PricingPage() {
                 <p className="mb-2.5 text-muted-foreground line-through">
                   $499
                 </p>
-                <p className="mb-2.5 bg-gradient-to-br from-blue-500 to-red-500 bg-clip-text text-transparent">
+                <p className="mb-2.5 bg-blue-600 bg-clip-text text-transparent">
                   (20% off)
                 </p>
               </div>
@@ -222,7 +215,7 @@ export default function PricingPage() {
                 your business scales.
               </p>
               <Button
-                className="w-full mt-4 h-10 text-base"
+                className="w-full mt-4 h-10 text-base bg-blue-600"
                 variant="vibrant"
                 size="mdRounded"
                 asChild
@@ -231,57 +224,158 @@ export default function PricingPage() {
               </Button>
               <ul className="mt-8 space-y-2">
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> 100 stores per
+                  <Check className="size-4 text-blue-600" /> 100 stores per
                   month
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> 200 products per
+                  <Check className="size-4 text-blue-600" /> 200 products per
                   store
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="size-4 text-blue-500 mt-1" />
+                  <Check className="size-4 text-blue-600 mt-1" />
                   <div className="space-y-1">
                     <p>Heavily discounted USPS shipping labels</p>
-                    <p className="text-sm text-blue-500">
-                      Up to 50% off retail rates
+                    <p className="text-sm text-blue-600">
+                      Up to 88% off retail rates
                       <br />
                       Live shipment tracking
                     </p>
                   </div>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> $0 website hosting
+                  <Check className="size-4 text-blue-600" /> $0 website hosting
                   fees
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> Online stores that
+                  <Check className="size-4 text-blue-600" /> Online stores that
                   actually look good
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> Automatic tax
+                  <Check className="size-4 text-blue-600" /> Automatic tax
                   collection
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> Refund and dispute
+                  <Check className="size-4 text-blue-600" /> Refund and dispute
                   handling
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="size-4 text-blue-500 mt-1" />
+                  <Check className="size-4 text-blue-600 mt-1" />
                   <div className="space-y-1">
                     <p>2.9% platform fee</p>
-                    <p className="text-sm text-blue-500">
+                    <p className="text-sm text-blue-600">
                       Save 3% per transaction compared to starter license
                     </p>
                   </div>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="size-4 text-blue-500" /> Priority customer
+                  <Check className="size-4 text-blue-600" /> Priority customer
                   support
                 </li>
               </ul>
             </CardContent>
           </Card>
         </div>
+
+        <Card className="w-full mt-4 pb-2">
+          <CardHeader className="pb-0 flex-row justify-between">
+            <div className="space-y-1.5">
+              <CardTitle className="rounded text-black font-semibold text-2xl tracking-tighter flex items-start gap-2">
+                <FaUsps className="size-9 -mt-0.5" />
+                Ship more to save more
+              </CardTitle>{" "}
+              <p>
+                Purchase {monthlyLabels} shipping labels per month and the full
+                license pays for itself in{" "}
+                <span className="inline-block font-semibold tracking-tight">
+                  {monthsToPayoff > 0 ? monthsToPayoff : "—"}{" "}
+                  {monthsToPayoff === 1 ? "month" : "months"}
+                </span>
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6 mt-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="rounded-lg space-y-2">
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    Retail cost per month
+                    <TooltipProvider delayDuration={150}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button
+                            type="button"
+                            className="text-muted-foreground/80 hover:text-muted-foreground inline-block ml-1 translate-y-[2px]"
+                            aria-label="Normal cost per month assumption"
+                          >
+                            <Info className="size-3.5" />
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent className="max-w-[220px] text-xs">
+                          Assumes $8 per shipping label
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                  <div className="line-through font-light text-neutral-400 text-4xl md:text-5xl py-2">
+                    ${Math.round(regularCost).toLocaleString()}
+                  </div>
+                </div>
+
+                <div className="rounded-lg space-y-2">
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    Our cost per month
+                    <TooltipProvider delayDuration={150}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button
+                            type="button"
+                            className="text-muted-foreground/80 hover:text-muted-foreground inline-block ml-1 translate-y-[2px]"
+                            aria-label="Original cost per month assumption"
+                          >
+                            <Info className="size-3.5" />
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent className="max-w-[220px] text-xs">
+                          Assumes maximum 88% discount
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                  <div className="font-semibold text-4xl md:text-5xl tracking-tighter py-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-pink-500 w-fit pr-1">
+                    ${Math.round(discountedCost).toLocaleString()}
+                  </div>
+                </div>
+
+                <div className="rounded-lg space-y-2">
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    Savings per month
+                  </div>
+                  <div className="font-semibold text-4xl md:text-5xl tracking-tighter py-2 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-600 w-fit pr-1">
+                    ${Math.round(monthlySavings).toLocaleString()}
+                  </div>
+                </div>
+
+                <div className="rounded-lg space-y-2">
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    Savings per year
+                  </div>
+                  <div className="font-semibold text-4xl md:text-5xl tracking-tighter py-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600 w-fit pr-1">
+                    ${Math.round(yearlySavings).toLocaleString()}
+                  </div>
+                </div>
+              </div>
+              <div className="pb-2">
+                <Slider
+                  min={0}
+                  max={500}
+                  step={10}
+                  value={[monthlyLabels]}
+                  onValueChange={(value) => setMonthlyLabels(value[0])}
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <Card
           className="!mt-10 relative w-full pb-3 border-2 border-red-500"
@@ -369,7 +463,7 @@ export default function PricingPage() {
                                     </button>
                                   </TooltipTrigger>
                                   <TooltipContent className="max-w-[240px]">
-                                    Extra platform/card processing fees
+                                    Additional platform/card processing fees
                                   </TooltipContent>
                                 </Tooltip>
                               </TooltipProvider>
@@ -385,98 +479,7 @@ export default function PricingPage() {
           </CardContent>
         </Card>
 
-        <Card className="w-full mt-4 pb-2">
-          <CardHeader className="pb-0 flex-row justify-between">
-            <div className="space-y-1.5">
-              <CardTitle className="font-semibold text-2xl tracking-tighter flex items-start gap-2">
-                <FaUsps className="size-[30px] mt-[1px]" /> Ship and save
-              </CardTitle>{" "}
-              <p>
-                Purchase {monthlyLabels} shipping labels per month and the full
-                license pays for itself in{" "}
-                <span className="inline-block font-semibold tracking-tight bg-emerald-50 px-1.5 py-0.5 rounded text-emerald-600">
-                  {monthsToPayoff > 0 ? monthsToPayoff : "—"}{" "}
-                  {monthsToPayoff === 1 ? "month" : "months"}
-                </span>
-              </p>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-10 mt-6">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="rounded-lg space-y-2">
-                  <div className="text-xs sm:text-sm text-muted-foreground">
-                    Original cost per month
-                    <TooltipProvider delayDuration={150}>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <button
-                            type="button"
-                            className="text-muted-foreground/80 hover:text-muted-foreground inline-block ml-1 translate-y-[2px]"
-                            aria-label="Original cost per month assumption"
-                          >
-                            <Info className="size-3.5" />
-                          </button>
-                        </TooltipTrigger>
-                        <TooltipContent className="max-w-[220px] text-xs">
-                          Assumes $8 per shipping label
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                  <div className="font-semibold text-4xl md:text-[40px] tracking-tighter py-2 text-neutral-900">
-                    ${regularCost.toLocaleString()}
-                  </div>
-                </div>
-
-                <div className="rounded-lg space-y-2">
-                  <div className="text-xs sm:text-sm text-muted-foreground">
-                    Itemstores discount
-                  </div>
-                  <div className="font-semibold text-4xl md:text-[40px] tracking-tighter py-2 text-emerald-800">
-                    -50%
-                  </div>
-                </div>
-
-                <div className="rounded-lg space-y-2">
-                  <div className="text-xs sm:text-sm text-muted-foreground">
-                    Savings per month
-                  </div>
-                  <div className="font-semibold text-4xl md:text-[40px] tracking-tighter py-2 text-emerald-600">
-                    ${monthlySavings.toLocaleString()}
-                  </div>
-                </div>
-
-                <div className="rounded-lg space-y-2">
-                  <div className="text-xs sm:text-sm text-muted-foreground">
-                    Savings per year
-                  </div>
-                  <div className="font-semibold text-4xl md:text-[40px] tracking-tighter py-2 text-emerald-600">
-                    ${yearlySavings.toLocaleString()}
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <Slider
-                  min={0}
-                  max={500}
-                  step={10}
-                  value={[monthlyLabels]}
-                  onValueChange={(value) => setMonthlyLabels(value[0])}
-                  className="w-full"
-                />
-                <div className="grid grid-cols-3 mt-2 text-sm text-muted-foreground">
-                  <p>0</p>
-                  <p className="text-neutral-900 text-center">Labels</p>
-                  <p className="text-right">500+</p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="w-full mt-4 border-2 border-red-600">
+        <Card id="free-migration" className="w-full mt-4">
           <CardHeader>
             <CardTitle className="font-semibold text-2xl tracking-tighter flex items-start gap-2">
               <ArrowLeftRight className="mt-[3px]" /> Switching from another
@@ -484,7 +487,7 @@ export default function PricingPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="bg-red-600 rounded-lg p-4 mb-3 pt-3.5 text-white">
+            <div className="bg-gradient-to-br sm:bg-gradient-to-r from-blue-900 via-purple-600 sm:via-[30%] to-red-400 rounded-lg p-4 mb-3 pt-3.5 text-white">
               <h3 className="font-semibold text-xl sm:text-2xl tracking-tight mb-1">
                 Our free migration promise
               </h3>
@@ -535,33 +538,35 @@ export default function PricingPage() {
           <CardContent>
             <ul className="mt-4 space-y-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-3">
               <li className="flex items-center gap-2">
-                <Check className="size-4 text-blue-500" /> Secure payment
+                <Check className="size-4 text-blue-600" /> Secure payment
                 processing
               </li>
               <li className="flex items-center gap-2">
-                <Check className="size-4 text-blue-500" /> Support for 135+
+                <Check className="size-4 text-blue-600" /> Support for 135+
                 currencies
               </li>
               <li className="flex items-center gap-2">
-                <Check className="size-4 text-blue-500" /> Fast payouts to your
+                <Check className="size-4 text-blue-600" /> Fast payouts to your
                 bank account
               </li>
               <li className="flex items-center gap-2">
-                <Check className="size-4 text-blue-500" /> Fraud prevention
+                <Check className="size-4 text-blue-600" /> Fraud prevention
                 tools
               </li>
               <li className="flex items-center gap-2">
-                <Check className="size-4 text-blue-500" /> Integrated payment
+                <Check className="size-4 text-blue-600" /> Integrated payment
                 forms
               </li>
               <li className="flex items-center gap-2">
-                <Check className="size-4 text-blue-500" /> Priority customer
+                <Check className="size-4 text-blue-600" /> Priority customer
                 support
               </li>
             </ul>
           </CardContent>
         </Card>
+      </div>
 
+      <div className="flex w-full justify-center pb-20">
         <div className="mt-16 sm:mt-20 w-full max-w-[600px] flex flex-col items-center">
           <h1 className="font-semibold text-4xl tracking-tighter text-center">
             Frequently asked questions
@@ -637,16 +642,6 @@ export default function PricingPage() {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-7">
-              <AccordionTrigger className="text-md">
-                Are payments and payouts secure?
-              </AccordionTrigger>
-              <AccordionContent className="text-neutral-500">
-                Absolutely. We partner with Stripe to handle payments. Stripe is
-                certified as PCI Service Provider Level 1. This is the most
-                stringent level of certification available in the industry.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-8">
               <AccordionTrigger className="text-md">
                 Can I refund a customer?
               </AccordionTrigger>

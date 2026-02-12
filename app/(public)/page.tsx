@@ -19,7 +19,7 @@ export default function App() {
               Launch your{" "}
               <Link
                 href="/auth/signup"
-                className="gap-1 inline-flex items-center hover:opacity-90 transition-opacity ml-0.5 rounded-lg animate-slide-reveal bg-gradient-to-r from-blue-600 to-red-600 text-white px-2 py-1.5 sm:px-3 sm:py-2 md:pl-3 md:pr-4 md:py-3 xl:pl-4 xl:pr-5 xl:py-4 leading-none"
+                className="gap-1 inline-flex items-center hover:opacity-90 transition-opacity ml-0.5 rounded-lg animate-slide-reveal bg-gradient-to-r from-blue-800 via-purple-700 via-[30%] to-red-400 text-white px-3 py-2 md:pl-3 md:pr-4 md:py-3 xl:pl-4 xl:pr-5 xl:py-4 leading-none"
               >
                 item.store/today
               </Link>

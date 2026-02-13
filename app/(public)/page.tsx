@@ -16,7 +16,7 @@ export default function App() {
         <div className="mt-[80px] sm:mt-24 md:mt-28 w-full max-w-content relative z-10">
           <div className="flex flex-col items-center text-center">
             <h1 className="text-[40px] sm:text-5xl md:text-[56px] lg:text-[64px] xl:text-[72px] tracking-tighter lg:tracking-[-0.3rem] font-semibold !mt-10 leading-tight sm:leading-[64px] md:leading-[72px] lg:leading-[88px] xl:leading-[96px]">
-              Launch your{" "}
+              Open your{" "}
               <Link
                 href="/auth/signup"
                 className="gap-1 inline-flex items-center hover:opacity-90 transition-opacity ml-0.5 rounded-lg animate-slide-reveal bg-gradient-to-r from-blue-800 via-purple-700 via-[30%] to-red-400 text-white px-3 py-2 md:pl-3 md:pr-4 md:py-3 xl:pl-4 xl:pr-5 xl:py-4 leading-none"
